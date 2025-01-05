@@ -156,11 +156,3 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ```
 
 ---
-
-<!--
-mvn io.quarkus:quarkus-maven-plugin:create \
-    -DprojectGroupId=com.example \
-    -DprojectArtifactId=master-quarkus \
-    -DclassName="com.example.Application" \
-    -Dpath="/api"
--->
