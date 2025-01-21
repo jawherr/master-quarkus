@@ -7,7 +7,6 @@ import javax.ws.rs.core.MediaType;
 
 @Path("/api/greeting")
 public class GreetingController {
-
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String hello() {
