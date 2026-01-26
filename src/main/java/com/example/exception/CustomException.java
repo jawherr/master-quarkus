@@ -1,4 +1,4 @@
-package main.java.com.example.exception;
+package com.example.exception;
 
 public class CustomException extends RuntimeException {
     public CustomException(String message) {

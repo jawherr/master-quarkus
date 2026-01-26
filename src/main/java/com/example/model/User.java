@@ -1,10 +1,9 @@
-package main.java.com.example.model;
+package com.example.model;
 
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
-import javax.persistence.Entity;
+import io.quarkus.security.IdentityAttribute;
 
-@Entity
-public class User extends PanacheEntity {
+@IdentityAttribute("UserEntity")
+public class User {
     public String name;
     public String email;
 }
