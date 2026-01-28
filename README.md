@@ -1,158 +1,246 @@
-# Master Quarkus
+# 🚀 Master Quarkus
 
-A professional Quarkus-based Java backend project to study and master modern backend development concepts with Quarkus.
+![Repository Size](https://img.shields.io/github/repo-size/jawherr/master-quarkus)
+![Last Commit](https://img.shields.io/github/last-commit/jawherr/master-quarkus)
+![Issues](https://img.shields.io/github/issues/jawherr/master-quarkus)
+![Stars](https://img.shields.io/github/stars/jawherr/master-quarkus)
 
----
-
-## **Table of Contents**
-- [Features](#features)
-- [Project Structure](#project-structure)
-- [Technologies Used](#technologies-used)
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-  - [Running the Application](#running-the-application)
-- [API Documentation](#api-documentation)
-- [Testing](#testing)
-- [Contributing](#contributing)
-- [License](#license)
+A **professional, production‑ready Quarkus backend** built to **learn, practice, and master modern Java backend development**.
+This repository focuses on **clean architecture**, **best practices**, and **real‑world patterns** used in scalable systems.
 
 ---
 
-## **Features**
-- RESTful API implementation
-- Dependency Injection with CDI
-- Database integration with Hibernate ORM and Panache
-- Exception handling and custom error responses
-- Unit and integration testing
-- Docker support for containerization
-- CI/CD integration with GitHub Actions
+## ✨ Overview
+
+**Master Quarkus** is a learning‑driven backend project that evolves step‑by‑step.
+It starts with core Quarkus fundamentals and progressively adds:
+
+* Layered architecture (Controller → Service → Repository)
+* Pagination & sorting
+* Clean error handling
+* Database best practices
+* API documentation
+* Containerization & CI/CD
+
+The goal is to serve as:
+
+* 📚 A **personal knowledge base**
+* 🧪 A **playground for backend experiments**
+* 💼 A **portfolio‑ready backend project**
 
 ---
 
-## **Project Structure**
-The project is organized as follows:
+## 🏗️ Architecture
+
+```
+Client (REST / JSON)
+        │
+        ▼
+Controller (JAX‑RS)
+        │
+        ▼
+Service Layer (Business Logic)
+        │
+        ▼
+Repository (Panache / Hibernate)
+        │
+        ▼
+PostgreSQL Database
+```
+
+### Architectural Principles
+
+* **Separation of Concerns**
+* **Thin Controllers**
+* **Business logic isolated in Services**
+* **Repository pattern with Panache**
+* **DTO‑friendly API design**
+
+---
+
+## 🚀 Features
+
+### ✅ Implemented (v1)
+
+* RESTful API with Quarkus (JAX‑RS)
+* Clean Controller / Service / Repository separation
+* PostgreSQL integration with Hibernate ORM + Panache
+* Pagination with metadata:
+
+  ```json
+  {
+    "data": [],
+    "page": 0,
+    "size": 10,
+    "total": 42,
+    "totalPages": 5,
+    "links": {
+        "next": null,
+        "prev": null,
+        "self": "/api/users?page=0&size=10"
+    }
+  }
+  ```
+* Sorting support (`sort=name,asc`)
+* HATEOAS‑lite links (`self`, `next`, `prev`)
+* Global exception handling
+* OpenAPI & Swagger UI
+
+### 🧭 Planned (Next Steps)
+
+* DTO mapping & validation
+* Authentication & Authorization (JWT)
+* Role‑based access control (RBAC)
+* Flyway database migrations
+* Integration & unit testing
+* Observability (metrics, health checks)
+* Native image build
+
+---
+
+## 📁 Project Structure
+
 ```
 master-quarkus/
-├── src/
-│   ├── main/
-│   │   ├── java/
-│   │   │   └── com/
-│   │   │       └── example/
-│   │   │           ├── config/                # Configuration classes
-│   │   │           ├── controller/            # REST endpoints
-│   │   │           ├── service/               # Business logic
-│   │   │           ├── repository/            # Data access layer
-│   │   │           ├── model/                 # Entity classes (e.g., JPA, DTOs)
-│   │   │           ├── exception/             # Custom exceptions
-│   │   │           ├── filter/                # Filters (e.g., JAX-RS filters)
-│   │   │           ├── util/                  # Utility classes
-│   │   │           └── Application.java       # Main application class
-│   │   └── resources/
-│   │       ├── application.properties         # Configuration properties
-│   │       ├── META-INF/
-│   │       │   └── resources/
-│   │       │       └── index.html             # Optional: Static frontend
-│   │       └── db/                            # Database migration scripts (e.g., Flyway)
-│   └── test/
-│       └── java/
-│           └── com/
-│               └── example/
-│                   ├── controller/            # Tests for REST endpoints
-│                   ├── service/               # Tests for business logic
-│                   └── repository/            # Tests for data access layer
-├── .github/                                   # GitHub-specific files (e.g., workflows)
-│   └── workflows/
-│       └── ci.yml                             # CI/CD pipeline
-├── .gitignore                                 # Git ignore rules
-├── README.md                                  # Project documentation
-├── pom.xml                                    # Maven build configuration
-└── Dockerfile                                 # Docker configuration
+├── src/main/java/com/example/
+│   ├── controller/        # REST endpoints
+│   ├── service/           # Business logic
+│   ├── repository/        # Data access layer
+│   ├── model/             # Entities & DTOs
+│   ├── exception/         # Custom exceptions & mappers
+│   ├── config/            # Application configuration
+│   └── Application.java
+│
+├── src/main/resources/
+│   ├── application.properties
+│   └── db/                # Flyway migrations
+│
+├── src/test/java/          # Unit & integration tests
+├── Dockerfile
+├── pom.xml
+└── README.md
 ```
 
 ---
 
-## **Technologies Used**
-- **Quarkus**: Supersonic Subatomic Java framework
-- **Java**: Primary programming language
-- **Maven**: Build automation tool
-- **Hibernate ORM**: Object-relational mapping
-- **RESTEasy**: JAX-RS implementation for RESTful APIs
-- **Docker**: Containerization
-- **GitHub Actions**: CI/CD pipeline
-- **Flyway**: Database migrations
+## ⚙️ Technologies Used
+
+| Category   | Tech                       |
+| ---------- | -------------------------- |
+| Framework  | **Quarkus**                |
+| Language   | **Java 17**                |
+| ORM        | Hibernate ORM + Panache    |
+| API        | JAX‑RS (RESTEasy Reactive) |
+| Database   | PostgreSQL                 |
+| Build Tool | Maven                      |
+| Docs       | OpenAPI / Swagger UI       |
+| Container  | Docker                     |
+| CI/CD      | GitHub Actions             |
 
 ---
 
-## **Getting Started**
+## 🛠️ Getting Started
 
-### **Prerequisites**
-- Java 17 or higher
-- Maven 3.8.x or higher
-- Docker (optional)
+### Prerequisites
 
-### **Installation**
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/jawherr/master-quarkus.git
-   ```
-2. Navigate to the project directory:
-   ```bash
-   cd master-quarkus
-   ```
-3. Build the project:
-   ```bash
-   mvn clean install
-   ```
+* Java **17+**
+* Maven **3.8+**
+* Docker (optional but recommended)
 
-### **Running the Application**
-- Run the application in development mode:
-  ```bash
-  mvn quarkus:dev
-  ```
-- Run the application in production mode:
-  ```bash
-  mvn quarkus:build
-  java -jar target/quarkus-app/quarkus-run.jar
-  ```
-- Run with Docker:
-  ```bash
-  docker build -t master-quarkus .
-  docker run -p 8080:8080 master-quarkus
-  ```
+### Clone the Repository
+
+```bash
+git clone https://github.com/jawherr/master-quarkus.git
+cd master-quarkus
+```
+
+### Run in Dev Mode
+
+```bash
+mvn quarkus:dev
+```
+
+### Build & Run (Production)
+
+```bash
+mvn clean package
+java -jar target/quarkus-app/quarkus-run.jar
+```
+
+### Run with Docker
+
+```bash
+docker build -t master-quarkus .
+docker run -p 8080:8080 master-quarkus
+```
 
 ---
 
-## **API Documentation**
-- Swagger UI: [http://localhost:8080/q/swagger-ui](http://localhost:8080/q/swagger-ui)
-- OpenAPI Schema: [http://localhost:8080/q/openapi](http://localhost:8080/q/openapi)
+## 📘 API Documentation
+
+* Swagger UI → **[http://localhost:8080/q/swagger-ui](http://localhost:8080/q/swagger-ui)**
+* OpenAPI JSON → **[http://localhost:8080/q/openapi](http://localhost:8080/q/openapi)**
 
 ---
 
-## **Testing**
-- Run unit tests:
-  ```bash
-  mvn test
-  ```
-- Run integration tests:
-  ```bash
-  mvn verify
-  ```
+## 📡 Example Endpoints
 
-[resource](https://github.com/quarkusio/quarkus-quickstarts)
+### Get Users (Paginated)
 
----
+```http
+GET /api/users?page=0&size=10&sort=name,asc
+```
 
-## **Contributing**
-Contributions are welcome! Please follow these steps:
-1. Fork the repository.
-2. Create a new branch (`git checkout -b feature/YourFeature`).
-3. Commit your changes (`git commit -m 'Add some feature'`).
-4. Push to the branch (`git push origin feature/YourFeature`).
-5. Open a pull request.
+### Create User
+
+```http
+POST /api/users
+Content-Type: application/json
+```
 
 ---
 
-## **License**
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+## 🧪 Testing
 
+```bash
+mvn test
+```
+
+```bash
+mvn verify
+```
+
+---
+
+## 📚 Learning Goals
+
+This repository focuses on mastering:
+
+* Quarkus internals & performance
+* Clean backend architecture
+* Database best practices
+* Production‑ready REST APIs
+* Modern Java ecosystem
+
+---
+
+## 🤝 Contributing
+
+Contributions, ideas, and discussions are welcome!
+
+1. Fork the repo
+2. Create a feature branch
+3. Commit your changes
+4. Open a Pull Request
+
+---
+
+## 📜 License
+
+This project is licensed under the **MIT License**.
+
+---
+
+## ⭐ Stargazers
+
+If this project helps you, consider giving it a star 🌟
