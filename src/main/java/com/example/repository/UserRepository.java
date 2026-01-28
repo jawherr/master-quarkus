@@ -1,24 +1,23 @@
 package com.example.repository;
 
+import com.example.model.User;
+import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import jakarta.enterprise.context.ApplicationScoped;
-
-import javax.management.loading.ClassLoaderRepository;
+import java.util.List;
+import java.util.Optional;
 
 @ApplicationScoped
-public class UserRepository implements ClassLoaderRepository {
-    @Override
-    public Class<?> loadClass(String className) throws ClassNotFoundException {
-        return null;
+public class UserRepository implements PanacheRepository<User> {
+
+    public Optional<User> findByEmail(String email) {
+        return find("email", email).firstResultOptional();
     }
 
-    @Override
-    public Class<?> loadClassWithout(ClassLoader exclude, String className) throws ClassNotFoundException {
-        return null;
+    public List<User> findByNameContaining(String name) {
+        return find("LOWER(name) LIKE LOWER(?1)", "%" + name + "%").list();
     }
 
-    @Override
-    public Class<?> loadClassBefore(ClassLoader stop, String className) throws ClassNotFoundException {
-        return null;
+    public List<User> findPaginated(int page, int pageSize) {
+        return findAll().page(page, pageSize).list();
     }
-    // Custom queries can be added here
 }
